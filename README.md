@@ -23,6 +23,10 @@ An independent **Minecraft 1.21.1 / NeoForge** modernization project, targeting 
 
 See [COMPATIBILITY.md](COMPATIBILITY.md) and [ARCHITECTURE.md](ARCHITECTURE.md) for the validation plan.
 
+## Prototype (feature branch only)
+
+A creative/operator-only block and block-entity snapshot prototype is under development. Use `/give @p matter_manipulator_modern:matter_manipulator_mk3`; sneak-right-click two opposite corners and right-click the destination face. Captures are limited to 4,096 blocks with queued 64-cell-per-tick paste operations. **This is not the completed Mk III and is not safe for production survival worlds.**
+
 ## Development
 
 - Minecraft **1.21.1**
@@ -32,4 +36,4 @@ See [COMPATIBILITY.md](COMPATIBILITY.md) and [ARCHITECTURE.md](ARCHITECTURE.md) 
 
 ## License
 
-The original MatterManipulator code is LGPL-3.0. This project's source is distributed under **LGPL-3.0-or-later** with original authors credited; see [LICENSE](LICENSE). The mod will not bundle proprietary game audio; it invokes modern Minecraft sound events as permitted by the game runtime.
+The original MatterManipulator code is LGPL-3.0. This project's source is distributed under **LGPL-3.0** with original authors credited; see [LICENSE](LICENSE). The mod does not bundle original game sound files. It uses existing Minecraft sound events and preserves the original cue design.

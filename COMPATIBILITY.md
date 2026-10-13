@@ -1,33 +1,27 @@
 # FTB Evolution compatibility policy
 
-**Target minimum pack version: 1.43.1 (Aug 27, 2026)**.
-Minecraft 1.21.1 and NeoForge are shared across this and later 1.4x releases.
-The Gradle build uses NeoForge **21.1.228**, provisionally selected as the older API baseline.
-This loader version must still be checked against the **actual 1.43.1 installed manifest** before declaring compatibility.
+Minimum **intended** pack version: **FTB Evolution 1.43.1** (2026-08-27). This target is a release requirement, not a passed certification. Both 1.43.1 and 1.45.0 are Minecraft 1.21.1 / NeoForge. FTB Evolution 1.45.0 explicitly lists NeoForge 21.1.250; the exact NeoForge version used by 1.43.1 has **not been independently verified**.
 
-| Pack version | Minecraft | Loader | Status |
+Build against conservative **NeoForge 21.1.228**; confirm 1.43.1's actual runtime and API behavior before publishing compatibility claims.
+
+| FTB Evolution | Minecraft | NeoForge | Verification |
 | --- | --- | --- | --- |
-| Evolution 1.43.1 | 1.21.1 | NeoForge | **Targeted, NOT tested** |
-| Evolution 1.44.0 | 1.21.1 | NeoForge | **Targeted, NOT tested** |
-| Evolution 1.45.0 | 1.21.1 | NeoForge 21.1.250 | **Targeted, NOT tested** |
+| **1.43.1** | 1.21.1 | exact pack version to confirm | Target, **not tested** |
+| 1.44.0 | 1.21.1 | exact pack version to confirm | Target, **not tested** |
+| 1.45.0 | 1.21.1 | 21.1.250 | Target, **not tested** |
 
-## Compatibility release gate
+## Release validation gates
 
-- [ ] Build JAR with Java 21 and minimum 1.43.1 pack loader
-- [ ] Boot clean singleplayer worlds in 1.43.1 and 1.45.0
-- [ ] Boot dedicated servers in both pack versions; verify both-sided mod installation
-- [ ] Confirm registration of Mk III item, language, recipe, sound cue
-- [ ] Test 3D blockstate orientation (stairs, rails, multipart)
-- [ ] Test nested contents, tanks, custom data components and access control
-- [ ] Test AE2: terminals, cables/facades, patterns, upgrades, cells, color, P2P networks
-- [ ] Test Mekanism, Modern Industrialization, Create, Ender IO, Oritech, Sophisticated Storage, FTB permissions
-- [ ] Test across a restarted world, modpack update and copy between dimensions
-- [ ] Prevent item/fluid/power duplication in survival
-- [ ] Add rollbacks, previews, missing-material analysis and server-side permission checks
-- [ ] Confirm mod dependencies installed on both versions (including optional AE2 integrations)
+- [x] Java 21 Gradle project builds with a NeoForge 21.1.x baseline (previous prototype passed, latest CI status on PR)
+- [ ] Unit tests pass on the alpha branch
+- [ ] Load into clean vanilla + NeoForge 1.21.1 client
+- [ ] Load into dedicated NeoForge 1.21.1 server
+- [ ] **Boot FTB Evolution 1.43.1 client AND dedicated server**
+- [ ] Boot 1.45.0 (and relevant intervening pack versions)
+- [ ] Verify blockstate/BE capture, restart, paste and undo behavior
+- [ ] Round-trip Modern Industrialization, AE2, Mekanism, Create, Oritech, Ender IO and other FTB Evo devices without broken links or item duplication
+- [ ] Confirm protections, claim regions, huge blueprint bounds and packet-size behavior
+- [ ] Verify machine-specific rotation and network handling (not in this alpha)
+- [ ] Implement survival material accounting and network sourcing (not in this alpha)
 
-**No finished release is asserted or implied by this matrix.**
-
-## Installation
-
-When released, add the same tested mod JAR to the `mods/` directories of both the client and server. Maintain version-specific testing records. Never test raw machine-copy snapshots on an irreplaceable save.
+**Until validation succeeds:** alpha source and built artifacts are offered for development/testing only.

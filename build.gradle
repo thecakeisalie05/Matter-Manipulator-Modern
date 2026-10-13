@@ -3,6 +3,17 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.148'
 }
 
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
 group = project.mod_group_id
 version = project.mod_version
 base { archivesName = project.mod_id }

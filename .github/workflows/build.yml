@@ -17,10 +17,11 @@ jobs:
           gradle-version: '9.2.1'
       - name: Compile and package
         run: gradle --no-daemon build
-      - name: Launch NeoForge GameTest server (smoke test)
-        run: gradle --no-daemon runGameTestServer
-        timeout-minutes: 10
       - uses: actions/upload-artifact@v4
         with:
           name: matter-manipulator-modern-dev
           path: build/libs/*.jar
+          if-no-files-found: error
+      - name: Launch NeoForge GameTest server (smoke test)
+        run: gradle --no-daemon runGameTestServer
+        timeout-minutes: 10

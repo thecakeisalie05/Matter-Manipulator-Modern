@@ -25,6 +25,7 @@ neoForge {
     runs {
         client { client() }
         server { server(); programArgument '--nogui' }
+        gameTestServer { type = "gameTestServer" }
     }
     mods {
         matter_manipulator_modern { sourceSet(sourceSets.main) }
